@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:16
+    restart: always
+    env_file:
+      - docker.env
+    container_name: bookmark-manager
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nest-bookmark-manager
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    volumes:
+      - ./src:/app/src
