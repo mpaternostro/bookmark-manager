@@ -3,7 +3,7 @@ services:
     image: postgres:16
     restart: always
     env_file:
-      - docker.env
+      - .docker.env
     container_name: bookmark-manager
     volumes:
       - ./pgdata:/var/lib/postgresql/data
