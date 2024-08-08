@@ -34,7 +34,17 @@ $ npm install
 
 ## Running the app
 
+First, you have to create a new `.env` file at root, and fill it with your environment variables. You can find the required values in `.env.dist` file.
+
+If using Docker for local development (which is useful to run a local postgres DB) you must also have to create a new `.docker.env` file, and fill it with your environment variables. You can find the required values in `.docker.env.dist`.
+
 ```bash
+# development with docker
+$ docker compose up
+
+# development with docker (rebuild image, you may have to append `sudo`)
+$ docker compose up --build
+
 # development
 $ npm run start
 
