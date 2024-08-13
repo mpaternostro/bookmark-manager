@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { CommonModule } from './common/common.module';
 import { envSchema } from './common/env/env';
 import { EnvService } from './common/env/env.service';
+import { CoreModule } from './core/core.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { EnvService } from './common/env/env.service';
       }),
     }),
     CommonModule,
+    CoreModule,
   ],
   controllers: [AppController],
   providers: [AppService],
