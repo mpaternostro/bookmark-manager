@@ -23,7 +23,6 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @Get('whoami')
   whoami(@Request() req: RequestWithUser): RequestWithUser['user'] {
-    console.log(req.user);
     if (req.user) {
       return req.user;
     }
