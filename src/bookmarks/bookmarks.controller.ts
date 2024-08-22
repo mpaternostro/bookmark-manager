@@ -44,10 +44,10 @@ export class BookmarksController {
   }
 
   @Patch(':id')
-  @UsePipes(new ZodValidationPipe(updateBookmarkSchema))
   update(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updateBookmarkDto: UpdateBookmarkDto,
+    @Body(new ZodValidationPipe(updateBookmarkSchema))
+    updateBookmarkDto: UpdateBookmarkDto,
   ) {
     return this.bookmarksService.update(id, updateBookmarkDto);
   }
