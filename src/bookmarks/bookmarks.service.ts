@@ -24,7 +24,7 @@ export class BookmarksService {
   }
 
   update(id: number, updateBookmarkDto: UpdateBookmarkDto) {
-    return this.bookmarksRepository.update(updateBookmarkDto, { id });
+    return this.bookmarksRepository.update(id, updateBookmarkDto);
   }
 
   remove(id: number) {
