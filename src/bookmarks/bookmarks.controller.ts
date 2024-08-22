@@ -10,6 +10,7 @@ import {
   UsePipes,
   UseGuards,
   Request,
+  HttpCode,
 } from '@nestjs/common';
 import { RequestWithUser } from '../core/auth/types/request-with-user.interface';
 import { JwtAuthGuard } from '../core/auth/guard/jwt-auth.guard';
@@ -30,6 +31,7 @@ export class BookmarksController {
   constructor(private readonly bookmarksService: BookmarksService) {}
 
   @Post('new')
+  @HttpCode(201)
   @UsePipes(new ZodValidationPipe(createBookmarkSchema))
   create(
     @Body() createBookmarkDto: CreateBookmarkDto,
@@ -44,6 +46,7 @@ export class BookmarksController {
   }
 
   @Patch(':id')
+  @HttpCode(204)
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body(new ZodValidationPipe(updateBookmarkSchema))
@@ -53,6 +56,7 @@ export class BookmarksController {
   }
 
   @Delete(':id')
+  @HttpCode(204)
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.bookmarksService.remove(id);
   }
