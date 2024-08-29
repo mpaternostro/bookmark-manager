@@ -59,17 +59,7 @@ export class AuthService {
       secret: this.envService.get('JWT_ACCESS_TOKEN_SECRET'),
       expiresIn: this.envService.get('JWT_ACCESS_TOKEN_EXPIRATION_TIME'),
     });
-    if (this.envService.get('NODE_ENV') === 'production') {
-      const cookie = `Authentication=${token}; HttpOnly; Path=/; Max-Age=${this.envService.get(
-        'JWT_ACCESS_TOKEN_EXPIRATION_TIME',
-      )}`;
-      return {
-        cookie,
-        token,
-      };
-    }
-
-    const cookie = `Authentication=${token}; HttpOnly; Path=/; Max-Age=${this.envService.get(
+    const cookie = `Authentication=${token}; HttpOnly; Path=/; SameSite=Strict; Max-Age=${this.envService.get(
       'JWT_ACCESS_TOKEN_EXPIRATION_TIME',
     )}`;
     return {
