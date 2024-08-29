@@ -20,7 +20,10 @@ export class BookmarksService {
   }
 
   findAll(userId: number) {
-    return this.bookmarksRepository.find({ where: { user: { id: userId } } });
+    return this.bookmarksRepository.find({
+      where: { user: { id: userId } },
+      order: { created_at: 'ASC' },
+    });
   }
 
   update(id: number, updateBookmarkDto: UpdateBookmarkDto) {
